@@ -5,10 +5,7 @@ on:
       - master
     tags:
       - '!*' # Do not execute on tags
-    paths:
-      - .github/workflows/*
-      - src/*
-      - '*.json'
+
 jobs:
   test:
     runs-on: ubuntu-latest
