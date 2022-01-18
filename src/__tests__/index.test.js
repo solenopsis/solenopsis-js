@@ -17,11 +17,12 @@ describe('login', function () {
     });
 
     test('Valid environment', function () {
-        expect.assertions(1);
+        expect.assertions(2);
 
         return solenopsis.login('dev').then(function () {
             return new Promise(function (resolve) {
-                expect(jsforce.__loginMock.mock.calls.length).toBe(1);
+                expect(jsforce.__loginMock).toHaveBeenCalled();
+                expect(jsforce.__loginMock).toHaveBeenCalledWith('bob@example.com', 'test123abcdefg', expect.anything());
                 resolve();
             });
         });
