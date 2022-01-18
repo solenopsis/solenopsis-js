@@ -28,3 +28,6 @@ jobs:
         uses: paambaati/codeclimate-action@v3.0.0
         env:
           CC_TEST_REPORTER_ID: d3f723b3abe1272201c6b57766d46ed8d9ec55c5f934a4079fc58a1f461cf21f
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}

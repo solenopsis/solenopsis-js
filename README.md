@@ -1,4 +1,6 @@
 # solenopsis-js
+[![Code Climate](https://api.codeclimate.com/v1/badges/10206747ee80ab74bdd6/maintainability)](https://codeclimate.com/github/solenopsis/solenopsis-js/maintainability)
+[![Coverage Status](https://api.codeclimate.com/v1/badges/10206747ee80ab74bdd6/test_coverage)](https://codeclimate.com/github/solenopsis/solenopsis-js/test_coverage)
 Javascript utility methods around Solenopsis
 
 ## Configuration
