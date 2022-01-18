@@ -4,12 +4,11 @@ const __loginMock = jest.fn(function (user, pass, cb) {
     cb();
 });
 
+jsforce.__loginMock = __loginMock;
 jsforce.Connection = jest.fn().mockImplementation(() => {
     return {
-        login: __loginMock
+        login: jsforce.__loginMock
     };
 });
-
-jsforce.__loginMock = __loginMock;
 
 module.exports = jsforce;
