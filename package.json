@@ -1,0 +1,34 @@
+{
+  "name": "solenopsis",
+  "version": "1.0.0",
+  "description": "Utility methods for dealing with Solenopsis",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest",
+    "coverage": "rm -rf coverage && jest --collectCoverage",
+    "lint-js": "eslint src/*",
+    "lint": "npm run lint-js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/solenopsis/solenopsis-js.git"
+  },
+  "keywords": [
+    "solenopsis",
+    "salesforce"
+  ],
+  "author": "Patrick Connelly <patrick@connelly.dev>",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/solenopsis/solenopsis-js/issues"
+  },
+  "homepage": "https://github.com/solenopsis/solenopsis-js#readme",
+  "devDependencies": {
+    "eslint": "^8.7.0",
+    "jest": "^27.4.7"
+  },
+  "dependencies": {
+    "ini": "^2.0.0",
+    "jsforce": "^1.11.0"
+  }
+}

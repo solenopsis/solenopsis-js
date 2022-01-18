@@ -1,0 +1,32 @@
+name: build
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - '!*' # Do not execute on tags
+    paths:
+      - src/*
+      - '*.json'
+  jobs:
+    test:
+      runs-on: ubuntu-latest
+
+      strategy:
+        matrix:
+          node-version: [12.x]
+
+      steps:
+        - uses: actions/checkout@master
+        - uses: actions/setup-node@master
+          with:
+            node-version: ${{ matrix.node }}
+        - name: Lint and Test
+          run: |
+            npm ci
+            npm run lint
+            npm run coverage
+        - name: Publish code coverage
+          uses: paambaati/codeclimate-action@v3.0.0
+          env:
+            CC_TEST_REPORTER_ID: d3f723b3abe1272201c6b57766d46ed8d9ec55c5f934a4079fc58a1f461cf21f
