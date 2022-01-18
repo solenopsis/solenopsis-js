@@ -33,3 +33,23 @@ describe('login', function () {
         return expect(solenopsis.login('unknown')).rejects.toThrow();
     });
 });
+
+describe('getCredentials', function () {
+    beforeEach(function () {
+        require('fs').__setMockFiles(MOCK_FILE_INFO); // eslint-disable-line global-require
+    });
+
+    test('Valid environment', function () {
+        expect.assertions(5);
+        return solenopsis.config.getCredentials('dev').then(function (credentials) {
+            return new Promise(function (resolve) {
+                expect(credentials).toBeDefined();
+                expect(credentials.username).toEqual('bob@example.com');
+                expect(credentials.password).toEqual('test123');
+                expect(credentials.token).toEqual('abcdefg');
+                expect(credentials.url).toEqual('https://test.salesforce.com');
+                resolve();
+            });
+        });
+    });
+});
