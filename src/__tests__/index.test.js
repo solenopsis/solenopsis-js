@@ -17,10 +17,58 @@ describe('login', function () {
     });
 
     test('Valid environment', function () {
-        expect.assertions(2);
+        expect.assertions(3);
 
         return solenopsis.login('dev').then(function () {
             return new Promise(function (resolve) {
+                expect(jsforce.Connection).toHaveBeenCalledWith({
+                    loginUrl: 'https://test.salesforce.com'
+                });
+                expect(jsforce.__loginMock).toHaveBeenCalled();
+                expect(jsforce.__loginMock).toHaveBeenCalledWith('bob@example.com', 'test123abcdefg', expect.anything());
+                resolve();
+            });
+        });
+    });
+
+    test('Valid environment with client name', function () {
+        expect.assertions(3);
+
+        const opts = {
+            client_name: 'test_client'
+        };
+
+        return solenopsis.login('dev', opts).then(function () {
+            return new Promise(function (resolve) {
+                expect(jsforce.Connection).toHaveBeenCalledWith({
+                    loginUrl: 'https://test.salesforce.com',
+                    callOptions: {
+                        client: 'test_client'
+                    }
+                });
+                expect(jsforce.__loginMock).toHaveBeenCalled();
+                expect(jsforce.__loginMock).toHaveBeenCalledWith('bob@example.com', 'test123abcdefg', expect.anything());
+                resolve();
+            });
+        });
+    });
+
+    test('Valid environment with client name and version', function () {
+        expect.assertions(3);
+
+        const opts = {
+            client_name: 'test_client',
+            client_version: '1.0.0'
+        };
+
+        return solenopsis.login('dev', opts).then(function () {
+            return new Promise(function (resolve) {
+                expect(jsforce.Connection).toHaveBeenCalledWith({
+                    loginUrl: 'https://test.salesforce.com',
+                    callOptions: {
+                        client: 'test_client/1.0.0'
+                    }
+                });
                 expect(jsforce.__loginMock).toHaveBeenCalled();
                 expect(jsforce.__loginMock).toHaveBeenCalledWith('bob@example.com', 'test123abcdefg', expect.anything());
                 resolve();

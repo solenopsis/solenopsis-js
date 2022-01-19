@@ -36,3 +36,22 @@ solenopsis.login('production')
     })
     .catch(console.error);
 ```
+
+#### Setting a client name / version
+You can pass in the client name with / without a version that will be made with SOAP / REST calls.  This is useful if the user is being used for multiple applications
+
+```
+const opts = {
+    client_name: 'myApp'
+};
+solenopsis.login('production', opts)
+```
+
+```
+const opts = {
+    client_name: 'myApp'
+    client_version: '1.0.0'
+};
+
+solenopsis.login('production', opts)
+```
