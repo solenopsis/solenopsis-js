@@ -44,6 +44,7 @@ You can pass in the client name with / without a version that will be made with 
 const opts = {
     client_name: 'myApp'
 };
+
 solenopsis.login('production', opts)
 ```
 
